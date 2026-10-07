@@ -1,0 +1,10 @@
+<ul>
+
+    
+        @for(user of users; track user.id){
+            <li>
+                {{ user.name }} - {{ user.email }} - {{ user.role }}
+            </li>
+}
+
+</ul>
