@@ -1,10 +1,26 @@
-<ul>
+<p>User Management</p>
 
-    
-        @for(user of users; track user.id){
-            <li>
-                {{ user.name }} - {{ user.email }} - {{ user.role }}
-            </li>
+@if (isLoading) {
+  <span>Loading...</span>
+} @else if (errorMessage !== '') {
+  <span>{{ errorMessage }}</span>
+} @else {
+  <input
+    type="search"
+    placeholder="Search user"
+    [(ngModel)]="userSearch"
+    (ngModelChange)="onSearchChange($event)"
+  >
+
+  <p>Search text: {{ userSearch }}</p>
+
+  <ul>
+    @for (user of filteredUsers; track user.id) {
+      <li>
+        {{ user.name }} - {{ user.email }} - {{ user.role }}
+      </li>
+    } @empty {
+      <li>No matching names</li>
+    }
+  </ul>
 }
-
-</ul>
